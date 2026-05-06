@@ -1,0 +1,3 @@
+display_name: OpenClaw Equity Research
+short_description: Structured equity research memos.
+default_prompt: Research AAPL as an equity analyst and produce a decision-ready memo with evidence, valuation frame, risks, and monitoring points.
