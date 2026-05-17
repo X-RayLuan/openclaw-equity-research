@@ -1,16 +1,16 @@
 # OpenClaw Equity Research
 
-Turn a public stock ticker into a structured equity research memo inside OpenClaw.
+Turn public-company inputs into structured equity research work products inside OpenClaw.
 
 ## Best for
 
-- stock analysis
-- company research
-- catalyst review
-- valuation framing
-- risk assessment
-- watchlist triage
-- bull / bear / neutral memo writing
+- earnings previews and post-earnings updates
+- company and ticker research
+- model update notes
+- initiating coverage drafts
+- sector overviews
+- catalyst calendars and thesis trackers
+- idea-generation screens and watchlist triage
 
 ---
 
@@ -18,26 +18,23 @@ Turn a public stock ticker into a structured equity research memo inside OpenCla
 
 This skill helps OpenClaw produce:
 
-- **Snapshot** — price, market cap, horizon, confidence
-- **Thesis** — the core research view
-- **Evidence table** — facts with source/timestamp context
-- **Market data and technical setup**
-- **Company and fundamentals**
-- **Catalysts**
-- **Valuation frame** — base / bull / bear
-- **Risks and falsification**
-- **Monitoring checklist**
-- **Research limits**
+- **Snapshot** — company/ticker, source freshness, currency, timestamp
+- **Key takeaways** — what changed and why it matters
+- **Evidence table** — facts, source, comparison point, implication
+- **Model and valuation assumptions**
+- **Risks and counterarguments**
+- **Catalysts and monitoring checklist**
+- **Human review notes**
 
 ---
 
 ## Good prompts
 
-- `Research RKLB and write an equity research memo.`
-- `Give me a TSLA bull / bear / valuation note.`
-- `Compare NVDA and AMD for a watchlist.`
-- `Write a one-page memo on AAPL focused on catalysts and risk.`
-- `Use OpenClaw Equity Research skill to analyze PLTR.`
+- `Use OpenClaw Equity Research to write an earnings preview for NVDA.`
+- `Prepare a post-earnings update for TSLA with evidence and model changes.`
+- `Build a catalyst calendar for AMD and NVDA.`
+- `Draft an initiating coverage outline for RKLB.`
+- `Compare PLTR and SNOW as an idea-generation screen.`
 
 ---
 
@@ -46,10 +43,11 @@ This skill helps OpenClaw produce:
 Because it pushes the output toward:
 
 - facts first
-- explicit valuation framing
+- explicit assumptions and valuation framing
 - real downside discussion
 - what would change the conclusion
 - visible research limits when data is stale or incomplete
+- citations and human-review gates
 
 ---
 
@@ -57,10 +55,11 @@ Because it pushes the output toward:
 
 It blends:
 
-- **OpenBB-style data-platform thinking**
-- **Agentic research workflow**
+- **filing/transcript-first source discipline**
+- **analyst note workflow design**
+- **Codex/OpenClaw tool routing for spreadsheets, documents, and presentations**
 
-So instead of only answering a stock question, it tries to build a reusable research packet.
+So instead of only answering a stock question, it builds review-ready research packets.
 
 ---
 
@@ -68,6 +67,8 @@ So instead of only answering a stock question, it tries to build a reusable rese
 
 - `SKILL.md`
 - `scripts/equity_research.py`
+- `references/workflows.md`
+- `references/research-standard.md`
 - `references/research-framework.md`
 - `references/data-sources.md`
 - `references/report-rubric.md`

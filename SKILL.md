@@ -1,110 +1,61 @@
 ---
 name: openclaw-equity-research
-description: Use this skill when the user asks for stock analysis, equity research, company research, ticker research, investment memo drafting, BUY/SELL/HOLD style research, watchlist triage, catalyst/risk analysis, valuation framing, or an OpenClaw agent workflow for public equities.
+description: Use when Codex needs to create, review, or update equity research work products such as earnings previews, post-earnings notes, model updates, initiating coverage, sector overviews, catalyst calendars, thesis trackers, idea generation screens, valuation memos, investor briefs, or public-company research that requires filings, transcripts, market data, spreadsheet work, citations, and analyst-review guardrails.
 ---
 
 # OpenClaw Equity Research
 
-## Goal
-Produce decision-ready equity research that combines market data, company context, catalysts, valuation framing, risk checks, and an explicit evidence trail.
+## Operating Rule
 
-This skill is inspired by:
-- OpenBB as the data-platform pattern: connect data once, consume it in reports, terminals, dashboards, or agents.
-- Agentic stock research systems as the workflow pattern: split work into stock finder, market data, news/catalyst, and recommendation synthesis stages.
+Draft analyst work product for human review. Do not present output as investment, legal, tax, accounting, or trading advice. Do not claim a buy/sell/hold recommendation unless the user explicitly asks for a draft recommendation and the assumptions, valuation, risks, and sources support it.
 
-## Use Cases
-- Single ticker research memo: `AAPL`, `TSLA`, `NVDA`, `RKLB`, etc.
-- Watchlist triage: compare multiple tickers and rank research priority.
-- Company deep dive: business model, market structure, financial quality, catalysts, valuation, risks.
-- Trading-oriented note: technical setup, levels, momentum, stop/risk framing.
-- Long-term investor note: moat, growth, margins, capital allocation, valuation scenario.
-- OpenClaw workflow design for analyst teams, research terminals, or agentic investment workspaces.
+## First Pass
 
-## Hard Rules
-- Do not present output as financial advice. Use research language, not instructions to trade.
-- Separate facts, estimates, and judgment.
-- Cite or name sources for all nontrivial claims when sources are available.
-- Prefer fresh data. For current prices, news, estimates, filings, and analyst changes, browse or use data APIs unless the user explicitly forbids it.
-- If data is stale, missing, or provider-limited, say so in the memo.
-- Do not fabricate financial metrics, target prices, filings, analyst ratings, or news.
-- For high-stakes recommendations, include bear case, key downside risks, and what would falsify the thesis.
+1. Identify the deliverable type and audience: earnings note, preview, model update, initiation, sector overview, catalyst calendar, thesis tracker, idea screen, or one-off memo.
+2. Confirm the ticker/company, exchange, coverage universe, geography, currency, date range, and output format if missing.
+3. Use fresh sources for public-company facts, estimates, prices, filings, calendar events, executives, market data, and news. Browse when the answer depends on current information.
+4. Prefer primary sources: SEC/company filings, investor relations releases, earnings call transcripts, presentations, exchange notices, and company websites. Use reputable secondary sources only to triangulate or fill gaps.
+5. Separate fact, calculation, inference, and opinion. Label uncertainty and stale data.
+6. Produce a concise decision-ready artifact with citations, assumptions, and next checks.
 
-## Quick Start
-From this skill directory:
+## Workflow Selection
 
-```bash
-python3 scripts/equity_research.py AAPL --out reports
-python3 scripts/equity_research.py TSLA NVDA RKLB --mode watchlist --out reports
-python3 scripts/equity_research.py --template AAPL --out reports
-```
+- **Earnings analysis**: read release, presentation, transcript, and filing; compare actuals to consensus or prior guide; isolate beats/misses, guide changes, margin drivers, cash flow, balance sheet, segment trends, and management tone.
+- **Earnings preview**: map consensus, guidance, buyside debate, expected KPIs, risks, and likely stock-moving questions before the print.
+- **Model update**: update actuals, guidance, forecast assumptions, valuation outputs, and sensitivity tables. Use spreadsheet tools for `.xlsx` work.
+- **Initiating coverage**: build company profile, industry structure, competitive position, financial history, forecast drivers, valuation, risks, catalysts, and final note/deck.
+- **Morning note**: summarize overnight news, earnings, rating changes, macro/sector moves, and actionable implications.
+- **Sector overview**: define market map, demand/supply drivers, unit economics, regulation, competitive landscape, valuation dispersion, and stock implications.
+- **Thesis tracker**: maintain thesis, evidence, catalysts, counterevidence, kill criteria, conviction, and unresolved questions.
+- **Catalyst calendar**: list dated events, expected impact, source, confidence, and prep needed.
+- **Idea generation**: screen for dislocations, estimate revisions, quality, momentum, valuation gaps, catalysts, short-interest, ownership changes, or variant perception.
 
-The script writes:
-- `{ticker}-equity-research.md`
-- `{ticker}-equity-research.json`
-- or `watchlist-equity-research.md` for multi-ticker triage
+For detailed checklists, read `references/workflows.md`. For quality gates and output patterns, read `references/research-standard.md`.
 
-## Research Workflow
-1. Clarify scope only when necessary: ticker(s), market, time horizon, user intent, and risk tolerance.
-2. Gather data:
-   - price history, volume, technical posture
-   - company profile, sector, market cap
-   - recent news/catalysts
-   - fundamentals and valuation metrics when available
-   - filings/transcripts/earnings if the user needs a deep dive
-3. Run the stage model:
-   - **Finder/Triage**: why this ticker is in scope and what makes it worth research time.
-   - **Market Data**: price, trend, liquidity, volatility, technical levels.
-   - **News/Catalyst**: recent events, sentiment, near-term calendar.
-   - **Fundamental/Valuation**: revenue quality, margin trend, cash generation, balance sheet, multiples or scenario frame.
-   - **Synthesis**: base case, bull case, bear case, key risks, monitoring points.
-4. Produce a memo with an explicit evidence table and confidence level.
-5. If the user asks for an action label, use `Research View: Bullish / Neutral / Bearish`, not personalized investment advice.
+## Deliverable Standard
 
-## Output Shape
-Use this memo structure unless the user requests a different format:
+Every research output should include:
 
-```markdown
-# {TICKER} Equity Research Memo
+- **Snapshot**: company/ticker, date, source freshness, base currency, market data timestamp if used.
+- **Key takeaways**: 3-5 bullets that answer what changed, why it matters, and what to watch.
+- **Evidence table**: metric/event, source, reported value, comparison point, implication.
+- **Model/valuation assumptions**: explicit drivers, ranges, sensitivities, and what would change the conclusion.
+- **Risks and counterarguments**: strongest opposing case, missing data, and near-term failure modes.
+- **Source list**: links or file names for every material claim.
+- **Human review note**: checks needed before external distribution.
 
-## Snapshot
-- Research view:
-- Time horizon:
-- Current price / market cap:
-- Data timestamp:
-- Confidence:
+## Tooling
 
-## Thesis
+- Use web search/browsing for current filings, releases, transcripts, market data, calendars, and news.
+- Use `spreadsheets` when creating or editing financial models, forecast tables, comps, sensitivities, or `.xlsx` files.
+- Use `documents` when producing professional `.docx` notes or redlines.
+- Use `presentations` when producing an investment committee deck, company overview, or sector deck.
+- If a user provides local files, inspect them first and preserve source provenance in the final artifact.
 
-## Evidence
-| Area | Evidence | Source / timestamp | Interpretation |
+## Guardrails
 
-## Market Data And Technical Setup
-
-## Company And Fundamentals
-
-## Catalysts
-
-## Valuation Frame
-- Base case:
-- Bull case:
-- Bear case:
-- Key assumptions:
-
-## Risks And Falsification
-
-## Monitoring Checklist
-
-## Research Limits
-```
-
-## When To Load References
-- Read `references/research-framework.md` before writing a full memo, building an agent workflow, or modifying the script.
-- Read `references/data-sources.md` when choosing between OpenBB, yfinance, SEC/filings, news, or web sources.
-- Read `references/report-rubric.md` when the user asks for institutional quality or review-ready output.
-
-## Script Notes
-`scripts/equity_research.py` is intentionally lightweight:
-- OpenBB-style design: one script produces reusable JSON + markdown artifacts.
-- yfinance-first runtime because it is already available in many OpenClaw environments.
-- OpenBB can be added later as a provider layer without changing the memo contract.
-- The script's output is a research starting point; the agent should still add judgment, source checks, and user-specific context when requested.
+- Do not invent consensus estimates, market prices, valuation multiples, or filing data.
+- Do not use a single unsourced chart or article as the basis for a financial conclusion.
+- Do not hide assumptions inside prose; put them in a table or bullet list.
+- Do not mix currencies, fiscal years, adjusted/non-GAAP metrics, or segment definitions without labeling them.
+- Do not externalize or post research without explicit user approval.
