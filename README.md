@@ -1,96 +1,138 @@
 # OpenClaw Equity Research
 
-**Decision-ready public equity research for OpenClaw.**
+**Analyst-grade equity research workflows for OpenClaw.**
 
-`openclaw-equity-research` turns a ticker into a structured research memo with:
+`openclaw-equity-research` helps OpenClaw turn public-company inputs into review-ready equity research artifacts: earnings previews, post-earnings updates, model update notes, initiating coverage drafts, sector overviews, catalyst calendars, thesis trackers, idea screens, and ticker memos.
 
-- market data and technical context
-- company and segment framing
-- recent catalysts
-- valuation scenarios
-- risks and thesis-falsification triggers
-- explicit evidence notes and research limits
+It is designed for research assistance and analyst workflow automation. It is not financial, legal, tax, accounting, or trading advice.
 
-It is built for **research assistance**, not financial advice.
+---
+
+## What changed in 0.1.2
+
+The skill was rewritten from a simple ticker memo helper into a broader equity research workflow layer:
+
+- added earnings preview and earnings analysis workflows
+- added model update, initiating coverage, sector overview, catalyst calendar, thesis tracker, and idea-generation flows
+- added source-quality rules for filings, transcripts, investor relations materials, market data, and reputable secondary sources
+- added explicit guardrails for stale data, unsupported claims, valuation assumptions, and human review
+- added Codex/OpenClaw routing guidance for spreadsheets, documents, presentations, and web research
+- added two new references: `references/workflows.md` and `references/research-standard.md`
+
+The older lightweight script and original reference files remain in the repo for fast ticker memo generation and future provider-layer work.
 
 ---
 
 ## Best for
 
-- Single-ticker memos: `AAPL`, `TSLA`, `RKLB`, `NVDA`
-- Company deep dives
-- Watchlist triage
-- Catalyst / risk analysis
-- Bull / bear / neutral research framing
-- OpenClaw-based analyst or PM workflows
+- earnings previews before a company reports
+- post-earnings updates after a release, call, or filing
+- model update notes with changed assumptions and valuation implications
+- initiating coverage drafts
+- sector and thematic overviews
+- catalyst calendars and thesis trackers
+- long/short idea screens and watchlist triage
+- single-ticker research memos
 
 ---
 
-## Why this exists
+## Research standard
 
-Most stock prompts degrade into one of two bad outcomes:
+The skill pushes OpenClaw toward a consistent analyst note standard:
 
-1. generic summaries with no decision value
-2. overconfident hot takes with weak sourcing
-
-This skill pushes OpenClaw toward a better default:
-
-- facts first
-- explicit valuation framing
-- real downside discussion
-- what would change the conclusion
-- visible research limits when data is stale or incomplete
+- **Snapshot** — company, ticker, date, source freshness, currency, and market data timestamp
+- **Key takeaways** — what changed, why it matters, and what to watch
+- **Evidence table** — metric or event, source, reported value, comparison point, and implication
+- **Model and valuation assumptions** — drivers, ranges, sensitivities, and conclusion-changing inputs
+- **Risks and counterarguments** — the strongest opposing case and missing diligence
+- **Source list** — links or local files for material claims
+- **Human review note** — checks needed before external use
 
 ---
 
-## Research pattern
+## Source policy
 
-This skill combines two ideas:
+For current facts, OpenClaw should browse or use connected data sources. The skill prefers:
 
-### 1) OpenBB-style platform thinking
-- collect market data, fundamentals, and news once
-- keep collection separate from synthesis
-- make outputs reusable across reports, dashboards, terminals, and agents
+1. Company filings, investor relations releases, earnings presentations, transcripts, and official websites
+2. Exchange and regulator sources
+3. User-provided models, notes, datasets, and vendor exports
+4. Reputable financial press or analyst summaries for context and triangulation
 
-### 2) Agentic stock research workflow
-- triage why the ticker matters now
-- gather market data
-- review news and catalysts
-- frame valuation
-- synthesize a clear bull / base / bear view
-
----
-
-## Output shape
-
-A typical memo includes:
-
-- Snapshot
-- Thesis
-- Evidence table
-- Market data and technical setup
-- Company and fundamentals
-- Catalysts
-- Valuation frame
-- Risks and falsification
-- Monitoring checklist
-- Research limits
-
-The goal is to produce something an operator, PM, or analyst can scan quickly.
+The skill tells OpenClaw not to invent consensus estimates, market prices, valuation multiples, target prices, management commentary, or filing data. If data is stale, missing, or provider-limited, the output should say so.
 
 ---
 
 ## Example prompts
 
-- `Research RKLB and write an equity research memo.`
-- `Give me a TSLA bull / bear / valuation note.`
-- `Compare NVDA and AMD for a watchlist.`
-- `Write a one-page memo on AAPL focused on catalysts and risk.`
-- `Use OpenClaw Equity Research skill to analyze PLTR.`
+```text
+Use OpenClaw Equity Research to write an earnings preview for NVDA.
+```
+
+```text
+Prepare a post-earnings update for TSLA with reported KPIs, guidance changes, model implications, and risks.
+```
+
+```text
+Build a catalyst calendar for AMD and NVDA for the next two quarters.
+```
+
+```text
+Draft an initiating coverage outline for RKLB with valuation framework and thesis kill criteria.
+```
+
+```text
+Compare PLTR and SNOW as an idea-generation screen with evidence, counterarguments, and next diligence.
+```
 
 ---
 
-## Quick start
+## Included workflows
+
+### Earnings preview
+
+Maps consensus, guidance, buyside debate, key KPIs, likely stock-moving questions, and bull/base/bear print scenarios.
+
+### Earnings analysis
+
+Reads the release, presentation, transcript, and filing; compares actuals to expectations or prior guidance; isolates beats, misses, guide changes, margin drivers, cash flow, segment trends, and management tone.
+
+### Model update
+
+Rolls forward periods, imports actuals, updates drivers, rebuilds valuation and sensitivity tables, and documents every changed assumption.
+
+### Initiating coverage
+
+Structures the investment summary, company profile, industry map, competitive position, financial drivers, valuation framework, catalysts, risks, and appendix.
+
+### Sector overview
+
+Covers value chain, demand and supply drivers, regulation, technology, pricing, peer comparison, valuation dispersion, and likely winners or losers under key scenarios.
+
+### Catalyst calendar and thesis tracker
+
+Turns dated events and thesis claims into monitored rows with source, confidence, evidence, counterevidence, kill criteria, and next action.
+
+### Idea generation
+
+Screens for dislocations, estimate revisions, valuation versus quality, margin inflection, refinancing risk, short interest plus catalysts, ownership changes, product cycles, regulation, or litigation.
+
+---
+
+## Files
+
+- `SKILL.md` — agent-facing routing, output contract, tool guidance, and guardrails
+- `references/workflows.md` — detailed workflow checklists
+- `references/research-standard.md` — source, evidence, calculation, writing, and review standards
+- `references/research-framework.md` — original memo framework
+- `references/data-sources.md` — data-provider guidance and caveats
+- `references/report-rubric.md` — quality rubric for review-ready output
+- `scripts/equity_research.py` — lightweight ticker memo generator
+- `agents/openai.yaml` — OpenAI/OpenClaw UI metadata
+
+---
+
+## Quick start for the script
 
 From this skill directory:
 
@@ -100,104 +142,24 @@ python3 scripts/equity_research.py TSLA NVDA RKLB --mode watchlist --out reports
 python3 scripts/equity_research.py --template AAPL --out reports
 ```
 
-Outputs:
+The script writes:
 
 - `{ticker}-equity-research.md`
 - `{ticker}-equity-research.json`
 - `watchlist-equity-research.md`
 
----
-
-## Example memo skeleton
-
-```markdown
-# RKLB Equity Research Memo
-
-## Snapshot
-- Research view: Bullish / valuation-aware
-- Time horizon: 12–24 months
-- Current price / market cap:
-- Data timestamp:
-- Confidence: Medium
-
-## Thesis
-
-## Evidence
-| Area | Evidence | Source / timestamp | Interpretation |
-
-## Market Data And Technical Setup
-
-## Company And Fundamentals
-
-## Catalysts
-
-## Valuation Frame
-- Base case:
-- Bull case:
-- Bear case:
-
-## Risks And Falsification
-
-## Monitoring Checklist
-
-## Research Limits
-```
-
----
-
-## Files
-
-- `SKILL.md` — agent-facing routing and behavior
-- `scripts/equity_research.py` — lightweight report generator
-- `references/research-framework.md` — workflow contract
-- `references/data-sources.md` — provider guidance and caveats
-- `references/report-rubric.md` — memo quality bar
-
----
-
-## Source policy
-
-The skill is opinionated about evidence:
-
-- prefer fresh market data
-- separate facts from judgment
-- do not invent metrics, targets, or analyst views
-- disclose stale or missing data
-- include key downside risks and what would invalidate the thesis
-
----
-
-## Current runtime approach
-
-The included script is intentionally lightweight:
-
-- **yfinance-first** for fast public-market pulls
-- markdown + JSON output for reuse
-- OpenBB-style provider layering can be added later without changing the memo contract
-
-This makes it a practical base for:
-
-- internal analyst tooling
-- OpenClaw stock research workflows
-- lightweight equity memo generation
-- future upgrade into a fuller research workspace
+The script is intentionally lightweight. It is a starting point for fast memo generation; the skill instructions tell the agent to add fresh sourcing, judgment, assumptions, and review gates when the user needs a research-quality output.
 
 ---
 
 ## Important limits
 
-This repo does **not** replace:
+This skill does not replace:
 
 - professional investment advice
-- full financial modeling
-- institutional-grade market data terminals
 - compliance review
-- analyst estimate feeds unless separately connected
+- full audited financial modeling
+- institutional market data terminals
+- licensed analyst estimate feeds unless separately connected
 
-Use it as a **structured first-pass research engine**.
-
----
-
-## Bottom line
-
-If you want OpenClaw to turn a ticker into a structured research memo with catalysts, valuation framing, risks, and falsification triggers, this skill gives you a practical base.
+Use it as a structured research workflow for drafting, triage, and analysis that a qualified human can review.

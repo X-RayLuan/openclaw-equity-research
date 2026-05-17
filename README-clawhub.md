@@ -1,14 +1,14 @@
 # OpenClaw Equity Research
 
-Turn public-company inputs into structured equity research work products inside OpenClaw.
+Create review-ready equity research artifacts inside OpenClaw: earnings previews, post-earnings notes, model update summaries, initiating coverage drafts, sector overviews, catalyst calendars, thesis trackers, idea screens, and ticker memos.
 
 ## Best for
 
 - earnings previews and post-earnings updates
-- company and ticker research
-- model update notes
-- initiating coverage drafts
-- sector overviews
+- public-company and ticker research
+- model update notes and valuation framing
+- initiating coverage outlines
+- sector and thematic overviews
 - catalyst calendars and thesis trackers
 - idea-generation screens and watchlist triage
 
@@ -16,15 +16,25 @@ Turn public-company inputs into structured equity research work products inside 
 
 ## What you get
 
-This skill helps OpenClaw produce:
+OpenClaw produces structured analyst work product with:
 
-- **Snapshot** — company/ticker, source freshness, currency, timestamp
+- **Snapshot** — company, ticker, date, currency, and source freshness
 - **Key takeaways** — what changed and why it matters
-- **Evidence table** — facts, source, comparison point, implication
-- **Model and valuation assumptions**
-- **Risks and counterarguments**
+- **Evidence table** — source, reported value, comparison point, implication
+- **Model and valuation assumptions** — drivers, ranges, and sensitivities
+- **Risks and counterarguments** — strongest bear case and missing diligence
 - **Catalysts and monitoring checklist**
-- **Human review notes**
+- **Human review notes** before external use
+
+---
+
+## What changed in 0.1.2
+
+- Broadened from ticker memo generation to a full equity research workflow layer
+- Added earnings, model-update, initiation, sector, catalyst, thesis-tracker, and idea-generation playbooks
+- Added source-quality and calculation standards
+- Added explicit human-review and no-financial-advice guardrails
+- Added references: `workflows.md` and `research-standard.md`
 
 ---
 
@@ -40,26 +50,14 @@ This skill helps OpenClaw produce:
 
 ## Why use this instead of a generic stock prompt?
 
-Because it pushes the output toward:
+It pushes the output toward:
 
-- facts first
-- explicit assumptions and valuation framing
+- primary-source discipline
+- facts separated from assumptions and judgment
+- explicit valuation framing
 - real downside discussion
-- what would change the conclusion
-- visible research limits when data is stale or incomplete
+- stale-data and missing-data disclosure
 - citations and human-review gates
-
----
-
-## What makes it different
-
-It blends:
-
-- **filing/transcript-first source discipline**
-- **analyst note workflow design**
-- **Codex/OpenClaw tool routing for spreadsheets, documents, and presentations**
-
-So instead of only answering a stock question, it builds review-ready research packets.
 
 ---
 
@@ -79,4 +77,4 @@ So instead of only answering a stock question, it builds review-ready research p
 
 This is **research assistance, not financial advice**.
 
-It is built to help you think more clearly about a stock, not to replace due diligence or tell you what to trade.
+It helps draft and organize analyst work product for review. It does not replace due diligence, compliance review, licensed market data, or professional investment judgment.
