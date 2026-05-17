@@ -1,67 +1,71 @@
 # OpenClaw Equity Research
 
-Create review-ready equity research artifacts inside OpenClaw: earnings previews, post-earnings notes, model update summaries, initiating coverage drafts, sector overviews, catalyst calendars, thesis trackers, idea screens, and ticker memos.
+> Analyst-grade public-equity research workflows for OpenClaw: earnings previews, post-earnings notes, model update summaries, initiating coverage drafts, sector overviews, catalyst calendars, thesis trackers, idea screens, and ticker memos.
 
-## Best for
-
-- earnings previews and post-earnings updates
-- public-company and ticker research
-- model update notes and valuation framing
-- initiating coverage outlines
-- sector and thematic overviews
-- catalyst calendars and thesis trackers
-- idea-generation screens and watchlist triage
+[Feature Matrix](#feature-matrix) · [Quick Start](#quick-start) · [Example Output](#example-output) · [Disclaimer](#disclaimer)
 
 ---
 
-## What you get
+## Feature Matrix
 
-OpenClaw produces structured analyst work product with:
-
-- **Snapshot** — company, ticker, date, currency, and source freshness
-- **Key takeaways** — what changed and why it matters
-- **Evidence table** — source, reported value, comparison point, implication
-- **Model and valuation assumptions** — drivers, ranges, and sensitivities
-- **Risks and counterarguments** — strongest bear case and missing diligence
-- **Catalysts and monitoring checklist**
-- **Human review notes** before external use
-
----
-
-## What changed in 0.1.2
-
-- Broadened from ticker memo generation to a full equity research workflow layer
-- Added earnings, model-update, initiation, sector, catalyst, thesis-tracker, and idea-generation playbooks
-- Added source-quality and calculation standards
-- Added explicit human-review and no-financial-advice guardrails
-- Added references: `workflows.md` and `research-standard.md`
+| Capability | Coverage |
+| --- | --- |
+| Earnings preview | Consensus setup, prior guidance, buyside debate, key KPIs, stock-moving questions |
+| Post-earnings analysis | Actuals versus expectations, guide changes, margin drivers, segments, management tone |
+| Model update notes | Forecast changes, valuation assumptions, sensitivity updates |
+| Initiating coverage | Company profile, industry map, financial drivers, valuation, risks, catalysts |
+| Sector overview | Value chain, demand/supply drivers, peer comparison, valuation dispersion |
+| Catalyst calendar | Dated events, expected impact, source, confidence, prep notes |
+| Thesis tracker | Thesis, evidence, counterevidence, confidence, kill criteria |
+| Idea generation | Dislocations, revisions, quality/valuation gaps, catalysts, ownership changes |
 
 ---
 
-## Good prompts
+## Quick Start
 
-- `Use OpenClaw Equity Research to write an earnings preview for NVDA.`
-- `Prepare a post-earnings update for TSLA with evidence and model changes.`
-- `Build a catalyst calendar for AMD and NVDA.`
-- `Draft an initiating coverage outline for RKLB.`
-- `Compare PLTR and SNOW as an idea-generation screen.`
+Use it in OpenClaw:
 
----
+```text
+Use OpenClaw Equity Research to write an earnings preview for NVDA.
+```
 
-## Why use this instead of a generic stock prompt?
+```text
+Prepare a post-earnings update for TSLA with evidence, model changes, risks, and review notes.
+```
 
-It pushes the output toward:
-
-- primary-source discipline
-- facts separated from assumptions and judgment
-- explicit valuation framing
-- real downside discussion
-- stale-data and missing-data disclosure
-- citations and human-review gates
+```text
+Build a catalyst calendar for AMD and NVDA for the next two quarters.
+```
 
 ---
 
-## Included files
+## Example Output
+
+The skill pushes OpenClaw to produce:
+
+- **Snapshot**: company, ticker, date, source freshness, currency, market data timestamp
+- **Key takeaways**: what changed, why it matters, what to watch
+- **Evidence table**: metric/event, source, reported value, comparison point, implication
+- **Model and valuation assumptions**: drivers, ranges, sensitivities
+- **Risks and counterarguments**: strongest opposing case and missing diligence
+- **Source list**: links or local files for material claims
+- **Human review note**: checks needed before external use
+
+---
+
+## Source And Tooling Coverage
+
+| Type | Preferred Sources or Tools |
+| --- | --- |
+| Primary company evidence | Filings, investor relations releases, presentations, transcripts, official websites |
+| Market and calendar facts | Fresh web/data-provider checks, exchange or regulator sources |
+| Research context | Reputable financial press, analyst summaries, user notes |
+| Spreadsheet work | Forecast tables, comps, sensitivities, `.xlsx` files |
+| Final artifacts | Research notes, redlines, decks, IC materials |
+
+---
+
+## Included Files
 
 - `SKILL.md`
 - `scripts/equity_research.py`
@@ -73,8 +77,6 @@ It pushes the output toward:
 
 ---
 
-## Important note
+## Disclaimer
 
-This is **research assistance, not financial advice**.
-
-It helps draft and organize analyst work product for review. It does not replace due diligence, compliance review, licensed market data, or professional investment judgment.
+This is research assistance, not financial advice. It helps draft and organize analyst work product for review; it does not replace due diligence, compliance review, licensed market data, or professional investment judgment.
